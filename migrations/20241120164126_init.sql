@@ -1,12 +1,16 @@
 -- +goose Up
 -- +goose StatementBegin
+CREATE TYPE gender_type AS ENUM ('Male', 'Female', 'Non-binary')
+
 CREATE TABLE post(
     id SERIAL PRIMARY KEY,
-    external_id TEXT NOT NULL UNIQUE,
     first_name TEXT,
     last_name TEXT,
     email TEXT,
-    ip_address TEXT
+    gender gender_type,
+    ip_address TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 -- +goose StatementEnd
 

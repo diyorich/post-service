@@ -1,4 +1,4 @@
-module posts-service
+module post-storage-service
 
 go 1.23
 

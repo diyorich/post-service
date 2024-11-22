@@ -8,9 +8,9 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"posts-service/internal/config"
-	"posts-service/internal/repository/pg"
-	"posts-service/internal/service"
+	"post-storage-service/internal/config"
+	"post-storage-service/internal/repository/pg"
+	"post-storage-service/internal/service"
 	"syscall"
 	"time"
 )
@@ -32,7 +32,7 @@ func run() error {
 		return err
 	}
 
-	svcManager := service.NewManager(db)
+	svcManager := service.NewManager(db, cfg.PostProvider)
 
 	r := initRoutes(svcManager)
 
