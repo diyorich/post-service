@@ -5,3 +5,6 @@ install-golangci-lint:
 
 lint:
 	$(LOCAL_BIN)/golangci-lint run ./... --config .golangci.pipeline.yml
+
+fetch-posts:
+	docker exec -it post-service /bin/bash -c "./fetcher"

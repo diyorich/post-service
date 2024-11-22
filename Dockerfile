@@ -9,6 +9,7 @@ RUN go mod download
 COPY . .
 
 RUN go build -o app cmd/app/main.go
+RUN go build -o fetcher cmd/fetcher/main.go
 
 EXPOSE 3002
 

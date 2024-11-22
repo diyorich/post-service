@@ -63,6 +63,7 @@ func (r *repository) GetList(ctx context.Context, pagination *pkg.Pagination) ([
 		Model(&posts).
 		Limit(pagination.Limit).
 		Offset(pagination.Offset).
+		OrderExpr("post.id ASC").
 		ScanAndCount(ctx)
 
 	if err != nil {

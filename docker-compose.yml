@@ -1,6 +1,6 @@
 services:
   post-db:
-    container_name: postprovider-db
+    container_name: post-db
     image: postgres
     restart: always
     environment:
@@ -14,24 +14,27 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - post-service
+      - post-network
   post-db-migrations:
-    container_name: postprovider-db-migrations
+    container_name: post-db-migrations
     build: ./migrations
     depends_on:
       - post-db
     networks:
-      - post-service
+      - post-network
   post-service:
-    container_name: postprovider-service
+    container_name: post-service
     build: .
     ports:
       - "${APP_PORT}:${APP_PORT}"
     depends_on:
       - post-db
+      - post-db-migrations
     networks:
-      - post-service
+      - post-network
 networks:
-  post-service:
+  post-network:
+    external: true
+
 volumes:
   pgdata: {}

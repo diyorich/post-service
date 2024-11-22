@@ -14,6 +14,8 @@ func FromServiceToPostsJSON(posts []model.Post) []model.PostJSON {
 			Email:     value.Email,
 			Gender:    value.Gender,
 			IPAddress: value.IPAddress,
+			CreatedAt: value.CreatedAt.Format("2006-01-02 15:04:05"),
+			UpdatedAt: value.UpdatedAt.Format("2006-01-02 15:04:05"),
 		}
 	}
 

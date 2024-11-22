@@ -6,6 +6,7 @@ import (
 	"github.com/pkg/errors"
 	"net/http"
 	"post-storage-service/internal/converter"
+	repoErr "post-storage-service/internal/repository"
 	"post-storage-service/internal/service"
 	"strconv"
 )
@@ -38,6 +39,11 @@ func (h *handler) GetByID(c *gin.Context) {
 
 	post, err := h.service.GetByID(c.Request.Context(), id)
 	if err != nil {
+		if errors.Is(err, repoErr.ErrPostNotFound) {
+			c.JSON(http.StatusNotFound, ResponseErr(service.ErrPostNotFound))
+			return
+		}
+
 		c.JSON(http.StatusInternalServerError, ResponseErr(service.ErrInternal))
 		return
 	}

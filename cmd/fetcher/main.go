@@ -27,7 +27,7 @@ func run() error {
 
 	svcManager := service.NewManager(db, cfg.PostProvider)
 
-	_ = svcManager.PostFetcherService.FetchPosts(context.Background())
+	err = svcManager.PostFetcherService.FetchPosts(context.Background())
 	if err != nil {
 		return err
 	}
