@@ -1,4 +1,4 @@
-package post
+package postprovider
 
 import (
 	"context"
@@ -7,13 +7,13 @@ import (
 	"github.com/pkg/errors"
 	"log"
 	"net/http"
-	adapterModel "post-storage-service/internal/adapter/post/model"
+	adapterModel "post-storage-service/internal/adapter/postprovider/model"
 	"time"
 )
 
 // get total posts amount in list
 func (a *Adapter) GetTotalPosts(ctx context.Context) (int, error) {
-	const op = "adapter.post.GetTotalPosts"
+	const op = "adapter.postprovider.GetTotalPosts"
 	url := fmt.Sprintf("%s%s?limit=1&offset=0", a.baseURL, getPostsListPath)
 
 	ctx, cancel := context.WithTimeout(ctx, time.Second*2)

@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-// FetchPosts fetches all posts from post Provider
+// FetchPosts fetches all posts from postprovider Provider
 func (s *service) FetchPosts(ctx context.Context) error {
 	const op = "service.postfetcher.FetchPosts"
 	totalPosts, err := s.postProvider.GetTotalPosts(ctx)

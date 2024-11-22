@@ -56,7 +56,7 @@ func (r *repository) SavePosts(ctx context.Context, posts []model.Post) error {
 }
 
 func (r *repository) GetList(ctx context.Context, pagination *pkg.Pagination) ([]model.Post, error) {
-	const op = "repository.post.GetList"
+	const op = "repository.postprovider.GetList"
 
 	var posts []repoModel.Post
 	totalRows, err := r.db.NewSelect().
@@ -75,7 +75,7 @@ func (r *repository) GetList(ctx context.Context, pagination *pkg.Pagination) ([
 }
 
 func (r *repository) GetByID(ctx context.Context, ID uint64) (model.Post, error) {
-	const op = "repository.post.GetByID"
+	const op = "repository.postprovider.GetByID"
 
 	var post repoModel.Post
 	err := r.db.NewSelect().

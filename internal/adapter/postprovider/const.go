@@ -1,3 +1,3 @@
-package post
+package postprovider
 
 const getPostsListPath = "/external/api/posts"

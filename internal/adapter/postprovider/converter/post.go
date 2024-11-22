@@ -1,7 +1,7 @@
 package converter
 
 import (
-	"post-storage-service/internal/adapter/post/model"
+	"post-storage-service/internal/adapter/postprovider/model"
 	svcModel "post-storage-service/internal/model"
 )
 

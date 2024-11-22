@@ -1,6 +1,6 @@
 services:
   post-db:
-    container_name: post-db
+    container_name: postprovider-db
     image: postgres
     restart: always
     environment:
@@ -16,14 +16,14 @@ services:
     networks:
       - post-service
   post-db-migrations:
-    container_name: post-db-migrations
+    container_name: postprovider-db-migrations
     build: ./migrations
     depends_on:
       - post-db
     networks:
       - post-service
   post-service:
-    container_name: post-service
+    container_name: postprovider-service
     build: .
     ports:
       - "${APP_PORT}:${APP_PORT}"

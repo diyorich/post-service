@@ -1,4 +1,4 @@
-package post
+package postprovider
 
 import (
 	"context"
@@ -7,14 +7,14 @@ import (
 	"github.com/pkg/errors"
 	"log"
 	"net/http"
-	"post-storage-service/internal/adapter/post/converter"
-	adapterModel "post-storage-service/internal/adapter/post/model"
+	"post-storage-service/internal/adapter/postprovider/converter"
+	adapterModel "post-storage-service/internal/adapter/postprovider/model"
 	"post-storage-service/internal/model"
 	"time"
 )
 
 func (a *Adapter) Fetch(ctx context.Context, limit int, offset int) ([]model.Post, error) {
-	const op = "adapter.post.Fetch"
+	const op = "adapter.postprovider.Fetch"
 	url := fmt.Sprintf("%s%s?limit=%v&offset=%v", a.baseURL, getPostsListPath, limit, offset)
 
 	ctx, cancel := context.WithTimeout(ctx, time.Second*2)

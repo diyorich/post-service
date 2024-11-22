@@ -1,4 +1,4 @@
-package post
+package postprovider
 
 type Adapter struct {
 	baseURL string

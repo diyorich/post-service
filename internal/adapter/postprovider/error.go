@@ -1,4 +1,4 @@
-package post
+package postprovider
 
 import "github.com/pkg/errors"
 

@@ -1,7 +1,7 @@
 package service
 
 import (
-	"post-storage-service/internal/adapter/post"
+	"post-storage-service/internal/adapter/postprovider"
 	"post-storage-service/internal/config"
 	"post-storage-service/internal/repository/pg"
 	repository "post-storage-service/internal/repository/post"
@@ -18,7 +18,7 @@ func NewManager(db *pg.DB, cfg config.PostProvider) *Manager {
 	postRepository := repository.NewRepository(db)
 
 	return &Manager{
-		PostFetcherService: postfetcher.NewService(postRepository, post.NewPostAdapter(cfg.URL), cfg),
+		PostFetcherService: postfetcher.NewService(postRepository, postprovider.NewPostAdapter(cfg.URL), cfg),
 		PostService:        post2.NewService(postRepository),
 	}
 }
