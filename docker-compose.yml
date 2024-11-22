@@ -1,0 +1,40 @@
+services:
+  post-db:
+    container_name: post-db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+      PGSSLMODE: ${DB_SSL}
+      TZ: ${DB_TIMEZONE}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - post-network
+  post-db-migrations:
+    container_name: post-db-migrations
+    build: ./migrations
+    depends_on:
+      - post-db
+    networks:
+      - post-network
+  post-service:
+    container_name: post-service
+    build: .
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    depends_on:
+      - post-db
+      - post-db-migrations
+    networks:
+      - post-network
+networks:
+  post-network:
+    external: true
+
+volumes:
+  pgdata: {}
