@@ -29,7 +29,7 @@ func (s *service) FetchPosts(ctx context.Context) error {
 			continue
 		}
 
-		//todo: move to queue
+		//todo: probably move to queue
 		sErr := s.repository.SavePosts(ctx, posts)
 		if sErr != nil {
 			saveErrs = append(saveErrs, sErr)

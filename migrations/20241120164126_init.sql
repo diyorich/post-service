@@ -1,9 +1,9 @@
 -- +goose Up
 -- +goose StatementBegin
-CREATE TYPE gender_type AS ENUM ('Male', 'Female', 'Non-binary')
+CREATE TYPE gender_type AS ENUM ('Male', 'Female', 'Non-binary');
 
 CREATE TABLE post(
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     first_name TEXT,
     last_name TEXT,
     email TEXT,
