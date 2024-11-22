@@ -25,6 +25,7 @@ func (s *service) FetchPosts(ctx context.Context) error {
 		fetchedAmount += s.fetchSize
 		posts, err := s.postProvider.Fetch(ctx, s.fetchSize, offset)
 		if err != nil {
+			//requesting current page of elements caused error
 			fetchErrs = append(fetchErrs, err)
 			continue
 		}

@@ -4,11 +4,13 @@ import (
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/pkg/errors"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"post-storage-service/internal/config"
+	"post-storage-service/internal/handler"
 	"post-storage-service/internal/repository/pg"
 	"post-storage-service/internal/service"
 	"syscall"
@@ -36,7 +38,7 @@ func run() error {
 
 	r := initRoutes(svcManager)
 
-	fmt.Printf("starting server on port %v", cfg.App.Port)
+	fmt.Println("starting server on port ", cfg.App.Port)
 
 	done := make(chan os.Signal, 1)
 	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
@@ -48,7 +50,7 @@ func run() error {
 
 	go func() {
 		if err := serv.ListenAndServe(); err != nil {
-			fmt.Println("error on starting server")
+			log.Println(errors.Wrap(err, "error on starting server"))
 		}
 	}()
 
@@ -70,6 +72,10 @@ func run() error {
 
 func initRoutes(svcManager *service.Manager) *gin.Engine {
 	r := gin.Default()
+	h := handler.NewHandler(svcManager.PostService)
+
+	r.GET("/api/posts", h.GetList)
+	r.GET("/api/posts/:id", h.GetByID)
 
 	return r
 }

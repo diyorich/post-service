@@ -1,5 +1,7 @@
 package model
 
+import "time"
+
 const (
 	MaleGender      = "Male"
 	FemaleGender    = "Female"
@@ -13,6 +15,19 @@ type Post struct {
 	Email     string
 	Gender    string
 	IPAddress string
+	CreatedAt time.Time
+	UpdatedAt time.Time
+}
+
+type PostJSON struct {
+	ID        uint64 `json:"id"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Email     string `json:"email"`
+	Gender    string `json:"gender"`
+	IPAddress string `json:"ip_address"`
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
 }
 
 func (p *Post) IsValidGender() bool {

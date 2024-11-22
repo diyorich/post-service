@@ -1,8 +1,6 @@
 module post-storage-service
 
-go 1.23
-
-toolchain go1.23.3
+go 1.23.3
 
 require (
 	github.com/gin-gonic/gin v1.10.0
@@ -23,6 +21,7 @@ require (
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
+	github.com/diyorich/post-api v0.0.0-20241122081551-5d0744b0e53b // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
